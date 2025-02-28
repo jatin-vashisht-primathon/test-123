@@ -41,7 +41,7 @@ export default function App() {
           </button>
         </div>
       )}
-      <p className="bg-red-500">Hello</p>
+      <p className="bg-red-500">Hello There Everyone</p>
     </>
   );
 }
