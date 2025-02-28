@@ -18,7 +18,7 @@ export default function Home() {
   };
   return (
     <>
-      <div className="h-screen w-screen bg-red-300">
+      <div className="h-screen w-screen bg-green-300">
         Hello There Yp
       </div> 
       {updateAvailable && (
