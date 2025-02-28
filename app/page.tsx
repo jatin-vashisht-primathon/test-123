@@ -41,7 +41,7 @@ export default function App() {
           </button>
         </div>
       )}
-      <p className="bg-red-500">Hello There Everyone</p>
+      <p className="bg-green-500">Hello There Everyone</p>
     </>
   );
 }
