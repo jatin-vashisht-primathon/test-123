@@ -1,6 +1,12 @@
 {
-  "theme_color": "#0a0a0a",
-  "background_color": "#0a0a0a",
+  "name": "PWA Next.js",
+  "short_name": "pwa-nextjs",
+  "theme_color": "#35155D",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
   "icons": [
     {
       "src": "/primathon-144x144.png",
@@ -34,13 +40,5 @@
       "type": "image/png"
     }
   ],
-  "orientation": "any",
-  "display": "standalone",
-  "dir": "auto",
-  "lang": "en-US",
-  "name": "Primathon",
-  "short_name": "Primathon",
-  "start_url": "/",
-  "scope": "/",
-  "id": "/"
+  "splash_pages": null
 }
