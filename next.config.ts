@@ -1,19 +1,22 @@
-// next.config.mjs
+import type { NextConfig } from "next";
+import withPWA from "next-pwa";
 
-import withPWA from 'next-pwa';
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-    reactStrictMode: true,      // Enable React strict mode for improved error handling
-    swcMinify: true,            // Enable SWC minification for improved performance
-    compiler: {
-        removeConsole: process.env.NODE_ENV !== "development"     // Remove console.log in production
-    }
+const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "*",
+      },
+    ],
+  },
 };
 
-export default withPWA({
-    dest: "public",         // destination directory for the PWA files
-    disable: process.env.NODE_ENV === "development",        // disable PWA in the development environment
-    register: true,         // register the PWA service worker
-    skipWaiting: false,      // skip waiting for service worker activation
-})(nextConfig);
+const pwa = withPWA({
+  dest: "public",
+  register: true,
+  skipWaiting: false,
+  disable: process.env.NODE_ENV === "development",
+});
+
+export default pwa(nextConfig);
