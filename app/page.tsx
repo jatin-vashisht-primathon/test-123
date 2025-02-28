@@ -42,8 +42,8 @@ export default function App() {
           </button>
         </div>
       )}
-      <p className="bg-green-500">Hello There Everyone</p>
-      <Image src='/test.jpg' alt='Image' height="300" width="300" />
+      <p className="bg-red-500">Hello There Everyone</p>
+      <Image src='/test.png' alt='Image' height="300" width="300" />
     </>
   );
 }
