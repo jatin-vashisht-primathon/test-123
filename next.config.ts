@@ -6,17 +6,15 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "*",
+        hostname: "**", // Allow all remote images
       },
     ],
   },
 };
 
-const pwa = withPWA({
+export default withPWA({
   dest: "public",
   register: true,
   skipWaiting: false,
   disable: process.env.NODE_ENV === "development",
-});
-
-export default pwa(nextConfig);
+})(nextConfig);
