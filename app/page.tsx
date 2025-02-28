@@ -2,25 +2,37 @@
 
 import { useEffect, useState } from "react";
 
-export default function Home() {
+export default function App() {
   const [updateAvailable, setUpdateAvailable] = useState(false);
+  const [waitingWorker, setWaitingWorker] = useState<ServiceWorker | null>(null);
 
   useEffect(() => {
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.addEventListener("controllerchange", () => {
-        setUpdateAvailable(true);
+      navigator.serviceWorker.ready.then((registration) => {
+        registration.addEventListener("updatefound", () => {
+          const newWorker = registration.installing;
+          if (!newWorker) return;
+
+          newWorker.addEventListener("statechange", () => {
+            if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+              setUpdateAvailable(true);
+              setWaitingWorker(newWorker);
+            }
+          });
+        });
       });
     }
   }, []);
 
   const refreshPage = () => {
+    if (waitingWorker) {
+      waitingWorker.postMessage({ type: "SKIP_WAITING" });
+    }
     window.location.reload();
   };
+
   return (
     <>
-      <div className="h-screen w-screen bg-green-300">
-        Hello There Yp
-      </div> 
       {updateAvailable && (
         <div className="fixed bottom-4 left-4 right-4 bg-blue-500 text-white p-3 rounded-lg shadow-lg text-center">
           A new version is available!{" "}
@@ -29,6 +41,7 @@ export default function Home() {
           </button>
         </div>
       )}
+      <p className="bg-red-500">Hello</p>
     </>
   );
 }
